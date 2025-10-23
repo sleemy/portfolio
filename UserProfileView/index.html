@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam-Inspired Portfolio - Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <a href="../UserProfileView/index.html" class="active">Profile</a>
+        <a href="../UserInventoryView/index.html">Inventory</a>
+        <a href="../CommunityCustomContentView/index.html">Community</a>
+        <a href="../CommunityMarketView/index.html">Market</a>
+    </nav>
+
+    <div class="profile-container">
+        <header class="profile-header">
+            <img src="https://via.placeholder.com/128" alt="User Avatar" class="avatar">
+            <div class="profile-info">
+                <h1 class="username">Your Name</h1>
+                <p class="status">Online</p>
+                <div class="profile-stats">
+                    <div>
+                        <div class="stat-value">10</div>
+                        <div class="stat-label">Level</div>
+                    </div>
+                    <div>
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div>
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">Badges</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section id="badges">
+                <h2>Badges</h2>
+                <div id="badge-container"></div>
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+                <div id="project-container"></div>
+            </section>
+
+            <section id="reviews">
+                <h2>Reviews</h2>
+                <div id="review-container"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="main.js" type="module"></script>
+</body>
+</html>
