@@ -1,4 +1,31 @@
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import { initializeAppCheck, ReCaptchaV3Provider, getToken } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-check.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyD9t9GQz5I52Iy9BRv7mtD1CoAbpvkGmLk",
+    authDomain: "mlb-aeb97.firebaseapp.com",
+    projectId: "mlb-aeb97",
+    storageBucket: "mlb-aeb97.firebasestorage.app",
+    messagingSenderId: "359891638261",
+    appId: "1:359891638261:web:20b14b6ca3c2cce89232bc",
+    measurementId: "G-D5Q5YKERLE"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Initialize Firebase App Check.
+// By not providing a key, we allow Firebase to manage it automatically.
+const appCheck = initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider(),
+  isTokenAutoRefreshEnabled: true
+});
+
+
 class SkillCard extends HTMLElement {
     constructor() {
         super();
@@ -60,12 +87,11 @@ class SkillCard extends HTMLElement {
             }
             .skill-card img {
                 transform: rotate(0deg); 
-                /* Apply a smooth transition to the transform property over 1 second */
                 transition: transform 1s ease-in-out; 
 
             }
                  .skill-card:hover img {
-                transform: rotate(360deg);ø
+                transform: rotate(360deg);
             }
             .skill-level-fill {
                 height: 100%;
@@ -75,7 +101,7 @@ class SkillCard extends HTMLElement {
         `;
 
         const shadow = this.shadowRoot;
-        shadow.innerHTML = ''; // Clear previous content
+        shadow.innerHTML = '';
 
         shadow.appendChild(style);
         wrapper.appendChild(icon);
@@ -88,40 +114,36 @@ class SkillCard extends HTMLElement {
 customElements.define('skill-card', SkillCard);
 
 const solutions = [
-    { name: 'HTML', iconUrl: '../assets/html.svg', level: 95 },
-    { name: 'CSS', iconUrl: '../assets/css.svg', level: 90 },
-    { name: 'JavaScript', iconUrl: '../assets/javascript.svg', level: 92 },
-    { name: 'TypeScript', iconUrl: '../assets/typescript.svg', level: 85 },
-    { name: 'Python', iconUrl: '../assets/python.svg', level: 88 },
-    { name: 'PHP', iconUrl: '../assets/php.svg', level: 98 },
-    { name: 'Ruby', iconUrl: '../assets/ruby.svg', level: 75 },
-    { name: 'C++', iconUrl: '../assets/c-plusplus.svg', level: 70 },
-    { name: 'C#', iconUrl: '../assets/c-sharp.svg', level: 80 },
-    { name: 'Go', iconUrl: '../assets/go.svg', level: 78 },
-    { name: 'Rust', iconUrl: '../assets/rust.svg', level: 65 },
-    { name: 'Java', iconUrl: '../assets/java.svg', level: 82 },
-    { name: 'SQL', iconUrl: '../assets/sql.svg', level: 89 },
-    { name: 'Node.js', iconUrl: '../assets/nodejs.svg', level: 91 },
-    { name: 'React', iconUrl: '../assets/react.svg', level: 87 },
-    { name: 'Vue', iconUrl: '../assets/vue.svg', level: 84 },
-    { name: 'Angular', iconUrl: '../assets/angular.svg', level: 81 },
-    { name: 'Svelte', iconUrl: '../assets/svelte.svg', level: 77 },
+    { name: 'HTML', iconUrl: 'assets/html.svg', level: 95 },
+    { name: 'CSS', iconUrl: 'assets/css.svg', level: 90 },
+    { name: 'JavaScript', iconUrl: 'assets/javascript.svg', level: 92 },
+    { name: 'TypeScript', iconUrl: 'assets/typescript.svg', level: 85 },
+    { name: 'Python', iconUrl: 'assets/python.svg', level: 88 },
+    { name: 'PHP', iconUrl: 'assets/php.svg', level: 98 },
+    { name: 'Ruby', iconUrl: 'assets/ruby.svg', level: 75 },
+    { name: 'C++', iconUrl: 'assets/c-plusplus.svg', level: 70 },
+    { name: 'C#', iconUrl: 'assets/c-sharp.svg', level: 80 },
+    { name: 'Go', iconUrl: 'assets/go.svg', level: 78 },
+    { name: 'Rust', iconUrl: 'assets/rust.svg', level: 65 },
+    { name: 'Java', iconUrl: 'assets/java.svg', level: 82 },
+    { name: 'SQL', iconUrl: 'assets/sql.svg', level: 89 },
+    { name: 'Node.js', iconUrl: 'assets/nodejs.svg', level: 91 },
+    { name: 'React', iconUrl: 'assets/react.svg', level: 87 },
+    { name: 'Vue', iconUrl: 'assets/vue.svg', level: 84 },
+    { name: 'Angular', iconUrl: 'assets/angular.svg', level: 81 },
+    { name: 'Svelte', iconUrl: 'assets/svelte.svg', level: 77 },
 ];
 
 const profileStatsContainer = document.querySelector('.profile-stats');
 
-// Sort solutions by level in descending order and take the top 10
 const topSkills = [...solutions]
     .sort((a, b) => b.level - a.level)
     .slice(0, 10);
 
-// Duplicate top skills for seamless animation
 const allTopSkills = [...topSkills, ...topSkills];
 
-// Clear existing stats
 profileStatsContainer.innerHTML = '';
 
-// Populate the profile stats
 allTopSkills.forEach(skill => {
     const statElement = document.createElement('div');
     const statValue = document.createElement('div');
@@ -138,7 +160,7 @@ allTopSkills.forEach(skill => {
 });
 
 const carouselTrack = document.querySelector('.carousel-track');
-const allSolutions = [...solutions, ...solutions]; // Duplicate the solutions
+const allSolutions = [...solutions, ...solutions]; 
 
 allSolutions.forEach(solution => {
     const skillCard = document.createElement('skill-card');
@@ -149,22 +171,49 @@ allSolutions.forEach(solution => {
 });
 
 const contactForm = document.getElementById('contact-form');
-contactForm.addEventListener('submit', (e) => {
+const submitButton = contactForm.querySelector('button[type="submit"]');
+
+// Disable the button initially until App Check is ready.
+submitButton.disabled = true;
+submitButton.textContent = 'Verifying...';
+
+// Wait for the initial App Check token.
+getToken(appCheck, /* forceRefresh= */ false).then(() => {
+    console.log("App Check token ready.");
+    submitButton.disabled = false;
+    submitButton.textContent = 'Send Message';
+}).catch(error => {
+    console.error("App Check failed to initialize:", error);
+    submitButton.textContent = 'Verification Failed';
+    // Optionally, keep the button disabled or show a more descriptive error.
+});
+
+
+contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
 
-    // In a real application, you would send this data to a server.
-    // For this example, we'll just log it to the console.
-    console.log('New message submitted:');
-    console.log(`Name: ${name}`);
-    console.log(`Email: ${email}`);
-    console.log(`Message: ${message}`);
+    try {
+        await addDoc(collection(db, "messages"), {
+            name: name,
+            email: email,
+            message: message,
+            timestamp: new Date()
+        });
+        
+        contactForm.reset();
+        alert('Thank you for your message! I will get back to you soon.');
 
-    // Clear the form
-    contactForm.reset();
-
-    // Display a confirmation message (optional)
-    alert('Thank you for your message! I will get back to you soon.');
+    } catch (error) {
+        console.error("Error adding document: ", error);
+        alert('There was an error sending your message. Please check the console for details.');
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Message';
+    }
 });

@@ -4,10 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Any Help From JerryJigga</title>
-    <meta http-equiv="refresh" content="0; url=UserProfileView/index.html" />
+    <title>JerryJigga's</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="solutions.css">
+    <link rel="icon" href="favico.ico">
 </head>
 <body>
-    <p>If you are not redirected automatically, follow this <a href="UserProfileView/index.html">link to the portfolio</a>.</p>
+    <nav class="main-nav">
+        <a href="https://github.com/sleemy">
+            <img src="assets/github.svg" alt="github" width="30" height="30">
+        </a>
+        <a href="https://x.com/Grandioza_uno">
+            <img src="assets/x.svg" alt="x" width="30" height="30">
+        </a>
+        <a href="#">
+            <img src="assets/linkedin.svg" alt="linkedin" width="30" height="30">
+        </a>
+        <a href="https://www.tiktok.com/@2simple4you">
+            <img src="assets/tt.svg" alt="tiktok" width="30" height="30">
+        </a>
+    </nav>
+
+    <div class="profile-container">
+        <header class="profile-header">
+            <img src="assets/img/JerryPro.png" alt="User Avatar" class="avatar">
+            <div class="profile-info">
+                <h1 class="username">JerryJigga</h1>
+                <p class="status"><b><i>Deployement+AI</i></b></p>
+                <div class="profile-stats-container">
+                    <div class="profile-stats">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section id="solutions">
+                <h2>Solutions</h2>
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        </div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2>Contact</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <app-footer></app-footer>
+
+    <script src="main.js" type="module"></script>
+    <script src="footer.js" type="module"></script>
 </body>
 </html>
