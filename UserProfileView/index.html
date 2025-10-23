@@ -5,57 +5,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steam-Inspired Portfolio - Profile</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="solutions.css">
+    <link rel="icon" href="../favico.ico">
 </head>
 <body>
     <nav class="main-nav">
-        <a href="../UserProfileView/index.html" class="active">Profile</a>
-        <a href="../UserInventoryView/index.html">Inventory</a>
-        <a href="../CommunityCustomContentView/index.html">Community</a>
-        <a href="../CommunityMarketView/index.html">Market</a>
+        <a href="#" class="active">Github</a>
+        <a href="#">Li</a>
+        <a href="#">X</a>
+        <a href="#">TT</a>
     </nav>
 
     <div class="profile-container">
         <header class="profile-header">
-            <img src="https://via.placeholder.com/128" alt="User Avatar" class="avatar">
+            <img src="https://avatars.githubusercontent.com/u/28668302?v=4" alt="User Avatar" class="avatar">
             <div class="profile-info">
-                <h1 class="username">Your Name</h1>
-                <p class="status">Online</p>
-                <div class="profile-stats">
-                    <div>
-                        <div class="stat-value">10</div>
-                        <div class="stat-label">Level</div>
-                    </div>
-                    <div>
-                        <div class="stat-value">5</div>
-                        <div class="stat-label">Projects</div>
-                    </div>
-                    <div>
-                        <div class="stat-value">18</div>
-                        <div class="stat-label">Badges</div>
+                <h1 class="username">JerryJigga</h1>
+                <p class="status">Full Stack Solutions,AI integrations and automations</p>
+                <div class="profile-stats-container">
+                    <div class="profile-stats">
                     </div>
                 </div>
             </div>
         </header>
 
         <main>
-            <section id="badges">
-                <h2>Badges</h2>
-                <div id="badge-container"></div>
+            <section id="solutions">
+                <h2>Solutions</h2>
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        </div>
+                </div>
             </section>
 
-            <section id="projects">
-                <h2>Projects</h2>
-                <div id="project-container"></div>
-            </section>
-
-            <section id="reviews">
-                <h2>Reviews</h2>
-                <div id="review-container"></div>
+            <section id="contact">
+                <h2>Contact Us</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </form>
             </section>
         </main>
     </div>
 
+    <app-footer></app-footer>
+
     <script src="main.js" type="module"></script>
+    <script src="../footer.js" type="module"></script>
 </body>
 </html>

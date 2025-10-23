@@ -3,29 +3,35 @@
 
 ## Overview
 
-A Steam-inspired portfolio application showcasing user profiles, inventories, and community content. The application is built with modern, framework-less web technologies, including Web Components, ES Modules, and modern CSS features. The design is inspired by the Steam platform, with a dark, immersive theme and a focus on visual presentation.
-
-## Style and Design
-
-*   **Theme:** Dark, with a color palette inspired by the Steam client (deep blues, grays, and a vibrant accent color).
-*   **Typography:** Clean, sans-serif fonts for readability.
-*   **Layout:** Responsive and mobile-first, using modern CSS layout techniques like Flexbox and Grid.
-*   **Components:** Reusable UI elements built with Web Components for encapsulation and maintainability.
+This project is a multi-page web application featuring a user profile, a community market, and a user inventory. The application is built with HTML, CSS, and JavaScript, and it utilizes web components for a modular architecture.
 
 ## Implemented Features
 
-*   **User Profile View:** Displays user information, including an avatar, username, status, level, projects, and badges.
-*   **User Inventory View:** Showcases a collection of trading cards, game items, and other virtual goods.
-*   **Community Content View:** A space for users to share and discover community-created content like artwork and screenshots.
-*   **Community Market View:** A marketplace for users to buy and sell in-game items and other virtual goods.
-*   **Web Components:**
-    *   `<user-badge>`: A component for displaying user badges.
-    *   `<user-project>`: A component for showcasing user projects.
-    *   `<user-review>`: A component for displaying user reviews.
-    *   `<inventory-item>`: A component for displaying items in the user's inventory.
-    *   `<community-item>`: A component for displaying community-created content.
-    *   `<market-item>`: A component for displaying items for sale in the community market.
+### Styling and Design
+
+*   **Core CSS:** A central `style.css` file provides global styles.
+*   **Component Styles:** Each view (`UserProfileView`, `CommunityMarketView`, `UserInventoryView`, etc.) has its own dedicated CSS file for component-specific styles.
+*   **Favicon:** A `favico.ico` file is included to be displayed in the browser tab.
+
+### Features
+
+*   **User Profile View:** Displays user information, including a profile picture, badges, projects, and reviews.
+*   **Community Market View:** A view to showcase community items.
+*   **User Inventory View:** A view to display a user's inventory.
+*   **Reusable Footer:** A footer component with a copyright notice is included on all pages.
 
 ## Current Plan
 
-This is the initial version of the application. The current plan is to continue to expand upon the existing features and add new functionality as requested.
+### Goal: Redesign the "UserProfileView" to better showcase skills and provide a contact form.
+
+### Steps:
+
+1.  **"Badges" to "Solutions" Section:**
+    *   Rename the "Badges" section to "Solutions".
+    *   Replace the current badge display with a dynamic carousel to showcase skills using the newly uploaded SVG icons.
+    *   Implement a hover effect on each SVG to display a skill level visualization.
+
+2.  **"Projects" to "Contact Us" Section:**
+    *   Replace the "Latest And Ongoing Projects" section with a "Contact Us" form.
+    *   The form will include fields for name, email, and a message.
+    *   Implement functionality to store the submitted messages.

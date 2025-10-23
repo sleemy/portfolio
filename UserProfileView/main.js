@@ -1,119 +1,161 @@
-class UserBadge extends HTMLElement {
+
+class SkillCard extends HTMLElement {
     constructor() {
         super();
-        const shadow = this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: 'open' });
+    }
+
+    connectedCallback() {
+        const iconUrl = this.getAttribute('icon-url');
+        const skillName = this.getAttribute('name');
+        const skillLevel = this.getAttribute('level');
+
+        if (!iconUrl) return;
 
         const wrapper = document.createElement('div');
+        wrapper.classList.add('skill-card');
+
         const icon = document.createElement('img');
-        const name = document.createElement('p');
-
-        const iconUrl = this.getAttribute('icon-url');
-        const badgeName = this.getAttribute('name');
-
         icon.src = iconUrl;
-        icon.alt = badgeName;
+        icon.alt = skillName;
         icon.width = 64;
         icon.height = 64;
 
-        name.textContent = badgeName;
+        const skillLevelBar = document.createElement('div');
+        skillLevelBar.classList.add('skill-level-bar');
 
+        const skillLevelFill = document.createElement('div');
+        skillLevelFill.classList.add('skill-level-fill');
+        skillLevelFill.style.width = `${skillLevel}%`;
+
+        skillLevelBar.appendChild(skillLevelFill);
+
+        const name = document.createElement('p');
+        name.textContent = skillName;
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .skill-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                padding: 15px;
+                background-color: var(--card-color);
+                border-radius: 8px;
+                box-shadow: 0 4px 8px var(--shadow-color);
+                position: relative;
+            }
+            .skill-level-bar {
+                width: 80%;
+                height: 10px;
+                background-color: #1b2838;
+                border-radius: 5px;
+                overflow: hidden;
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+            }
+            .skill-card:hover .skill-level-bar {
+                opacity: 1;
+            }
+            .skill-level-fill {
+                height: 100%;
+                background-color: var(--accent-color);
+                border-radius: 5px;
+            }
+        `;
+
+        const shadow = this.shadowRoot;
+        shadow.innerHTML = ''; // Clear previous content
+
+        shadow.appendChild(style);
         wrapper.appendChild(icon);
         wrapper.appendChild(name);
+        wrapper.appendChild(skillLevelBar);
         shadow.appendChild(wrapper);
     }
 }
 
-class ProjectCard extends HTMLElement {
-    constructor() {
-        super();
-        const shadow = this.attachShadow({ mode: 'open' });
+customElements.define('skill-card', SkillCard);
 
-        const wrapper = document.createElement('div');
-        const title = document.createElement('h3');
-        const description = document.createElement('p');
-
-        title.textContent = this.getAttribute('name');
-        description.textContent = this.getAttribute('description');
-
-        wrapper.appendChild(title);
-        wrapper.appendChild(description);
-        shadow.appendChild(wrapper);
-    }
-}
-
-class ReviewComment extends HTMLElement {
-    constructor() {
-        super();
-        const shadow = this.attachShadow({ mode: 'open' });
-
-        const wrapper = document.createElement('div');
-        const author = document.createElement('strong');
-        const comment = document.createElement('p');
-
-        author.textContent = this.getAttribute('author');
-        comment.textContent = this.textContent;
-
-        wrapper.appendChild(author);
-        wrapper.appendChild(comment);
-        shadow.appendChild(wrapper);
-    }
-}
-
-customElements.define('user-badge', UserBadge);
-customElements.define('project-card', ProjectCard);
-customElements.define('review-comment', ReviewComment);
-
-const badges = [
-    { name: 'HTML', iconUrl: 'https://www.svgrepo.com/show/373669/html.svg' },
-    { name: 'CSS', iconUrl: 'https://www.svgrepo.com/show/373535/css.svg' },
-    { name: 'JavaScript', iconUrl: 'https://www.svgrepo.com/show/353925/javascript.svg' },
-    { name: 'TypeScript', iconUrl: 'https://www.svgrepo.com/show/354478/typescript.svg' },
-    { name: 'Python', iconUrl: 'https://www.svgrepo.com/show/354258/python.svg' },
-    { name: 'PHP', iconUrl: 'https://www.svgrepo.com/show/354181/php.svg' },
-    { name: 'Ruby', iconUrl: 'https://www.svgrepo.com/show/354272/ruby.svg' },
-    { name: 'C++', iconUrl: 'https://www.svgrepo.com/show/353600/c-plusplus.svg' },
-    { name: 'C#', iconUrl: 'https://www.svgrepo.com/show/353599/c-sharp.svg' },
-    { name: 'Go', iconUrl: 'https://www.svgrepo.com/show/353818/go.svg' },
-    { name: 'Rust', iconUrl: 'https://www.svgrepo.com/show/354275/rust.svg' },
-    { name: 'Java', iconUrl: 'https://www.svgrepo.com/show/353920/java.svg' },
-    { name: 'SQL', iconUrl: 'https://www.svgrepo.com/show/354351/sql.svg' },
-    { name: 'Node.js', iconUrl: 'https://www.svgrepo.com/show/354142/nodejs.svg' },
-    { name: 'React', iconUrl: 'https://www.svgrepo.com/show/354259/react.svg' },
-    { name: 'Vue', iconUrl: 'https://www.svgrepo.com/show/354521/vue.svg' },
-    { name: 'Angular', iconUrl: 'https://www.svgrepo.com/show/353421/angular.svg' },
-    { name: 'Svelte', iconUrl: 'https://www.svgrepo.com/show/354382/svelte.svg' },
+const solutions = [
+    { name: 'HTML', iconUrl: '../assets/html.svg', level: 95 },
+    { name: 'CSS', iconUrl: '../assets/css.svg', level: 90 },
+    { name: 'JavaScript', iconUrl: '../assets/javascript.svg', level: 92 },
+    { name: 'TypeScript', iconUrl: '../assets/typescript.svg', level: 85 },
+    { name: 'Python', iconUrl: '../assets/python.svg', level: 88 },
+    { name: 'PHP', iconUrl: '../assets/php.svg', level: 98 },
+    { name: 'Ruby', iconUrl: '../assets/ruby.svg', level: 75 },
+    { name: 'C++', iconUrl: '../assets/c-plusplus.svg', level: 70 },
+    { name: 'C#', iconUrl: '../assets/c-sharp.svg', level: 80 },
+    { name: 'Go', iconUrl: '../assets/go.svg', level: 78 },
+    { name: 'Rust', iconUrl: '../assets/rust.svg', level: 65 },
+    { name: 'Java', iconUrl: '../assets/java.svg', level: 82 },
+    { name: 'SQL', iconUrl: '../assets/sql.svg', level: 89 },
+    { name: 'Node.js', iconUrl: '../assets/nodejs.svg', level: 91 },
+    { name: 'React', iconUrl: '../assets/react.svg', level: 87 },
+    { name: 'Vue', iconUrl: '../assets/vue.svg', level: 84 },
+    { name: 'Angular', iconUrl: '../assets/angular.svg', level: 81 },
+    { name: 'Svelte', iconUrl: '../assets/svelte.svg', level: 77 },
 ];
 
-const projects = [
-    { name: 'Project Alpha', description: 'A web app for data visualization.' },
-    { name: 'Project Beta', description: 'A mobile game developed in Unity.' },
-    { name: 'Project Gamma', description: 'An e-commerce platform with a custom backend.' },
-];
-const reviews = [
-    { author: 'Alice', comment: 'Great work on Project Alpha!' },
-    { author: 'Bob', comment: 'I really enjoyed the design of your portfolio.' },
-];
+const profileStatsContainer = document.querySelector('.profile-stats');
 
-const badgeContainer = document.getElementById('badge-container');
-badges.forEach(badge => {
-    const userBadge = document.createElement('user-badge');
-    userBadge.setAttribute('name', badge.name);
-    userBadge.setAttribute('icon-url', badge.iconUrl);
-    badgeContainer.appendChild(userBadge);
+// Sort solutions by level in descending order and take the top 10
+const topSkills = [...solutions]
+    .sort((a, b) => b.level - a.level)
+    .slice(0, 10);
+
+// Duplicate top skills for seamless animation
+const allTopSkills = [...topSkills, ...topSkills];
+
+// Clear existing stats
+profileStatsContainer.innerHTML = '';
+
+// Populate the profile stats
+allTopSkills.forEach(skill => {
+    const statElement = document.createElement('div');
+    const statValue = document.createElement('div');
+    statValue.classList.add('stat-value');
+    statValue.textContent = skill.level;
+
+    const statLabel = document.createElement('div');
+    statLabel.classList.add('stat-label');
+    statLabel.textContent = skill.name;
+
+    statElement.appendChild(statValue);
+    statElement.appendChild(statLabel);
+    profileStatsContainer.appendChild(statElement);
 });
 
-const projectContainer = document.getElementById('project-container');
-projects.forEach(project => {
-    const projectCard = document.createElement('project-card');
-    projectCard.setAttribute('name', project.name);
-    projectCard.setAttribute('description', project.description);
-    projectContainer.appendChild(projectCard);
+const carouselTrack = document.querySelector('.carousel-track');
+const allSolutions = [...solutions, ...solutions]; // Duplicate the solutions
+
+allSolutions.forEach(solution => {
+    const skillCard = document.createElement('skill-card');
+    skillCard.setAttribute('name', solution.name);
+    skillCard.setAttribute('icon-url', solution.iconUrl);
+    skillCard.setAttribute('level', solution.level);
+    carouselTrack.appendChild(skillCard);
 });
 
-const reviewContainer = document.getElementById('review-container');
-reviews.forEach(review => {
-    const reviewComment = document.createElement('review-comment');
-    reviewComment.setAttribute('author', review.author);
-    reviewComment.textContent = review.comment;
-    reviewContainer.appendChild(reviewComment);
+const contactForm = document.getElementById('contact-form');
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    // In a real application, you would send this data to a server.
+    // For this example, we'll just log it to the console.
+    console.log('New message submitted:');
+    console.log(`Name: ${name}`);
+    console.log(`Email: ${email}`);
+    console.log(`Message: ${message}`);
+
+    // Clear the form
+    contactForm.reset();
+
+    // Display a confirmation message (optional)
+    alert('Thank you for your message! I will get back to you soon.');
 });
