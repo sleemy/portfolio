@@ -3,8 +3,8 @@
 
 ## Overview
 
-A Steam-inspired portfolio application showcasing user profiles, inventories, and community content. The application is built with modern, framework-less web technologies, including Web Components, ES Modules, and modern CSS features. The design is inspired by the Steam platform, with a dark, immersive theme and a focus on visual presentation.
-
+A Steam inspired portfolio application showcasing user profiles, inventories, and community content. The application is built with modern, framework-less web technologies, including Web Components, ES Modules, and modern CSS features. The design is inspired by the Steam platform, with a dark, immersive theme and a focus on visual presentation.
+gu
 ## Style and Design
 
 *   **Theme:** Dark, with a color palette inspired by the Steam client (deep blues, grays, and a vibrant accent color).
