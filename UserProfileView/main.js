@@ -58,6 +58,15 @@ class SkillCard extends HTMLElement {
             .skill-card:hover .skill-level-bar {
                 opacity: 1;
             }
+            .skill-card img {
+                transform: rotate(0deg); 
+                /* Apply a smooth transition to the transform property over 1 second */
+                transition: transform 1s ease-in-out; 
+
+            }
+                 .skill-card:hover img {
+                transform: rotate(360deg);ø
+            }
             .skill-level-fill {
                 height: 100%;
                 background-color: var(--accent-color);
