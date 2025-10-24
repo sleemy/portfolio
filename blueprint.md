@@ -1,31 +1,49 @@
 
-# Project Blueprint
+# Blueprint for JerryJigga's Portfolio
 
-## Overview
+This document outlines the design, features, and implementation of a personal portfolio website for JerryJigga. The site is a modern, single-page application built with HTML, CSS, and JavaScript, and deployed on Firebase Hosting.
 
-A Steam inspired portfolio application showcasing user profiles, inventories, and community content. The application is built with modern, framework-less web technologies, including Web Components, ES Modules, and modern CSS features. The design is inspired by the Steam platform, with a dark, immersive theme and a focus on visual presentation.
-gu
-## Style and Design
+## **Purpose and Capabilities**
 
-*   **Theme:** Dark, with a color palette inspired by the Steam client (deep blues, grays, and a vibrant accent color).
-*   **Typography:** Clean, sans-serif fonts for readability.
-*   **Layout:** Responsive and mobile-first, using modern CSS layout techniques like Flexbox and Grid.
-*   **Components:** Reusable UI elements built with Web Components for encapsulation and maintainability.
+The primary goal of this project is to create a professional and visually appealing online portfolio to showcase JerryJigga's skills and projects. The site will feature:
 
-## Implemented Features
+*   **A personal introduction:** A brief bio and profile picture.
+*   **A "Solutions" section:** A carousel to display projects or key skills.
+*   **A contact form:** A secure way for visitors to get in touch.
+*   **Social media links:** Easy access to JerryJigga's online presence.
+*   **Modern and responsive design:** A visually appealing and mobile-friendly layout.
+*   **Security:** Protection against spam and abuse using reCAPTCHA Enterprise.
 
-*   **User Profile View:** Displays user information, including an avatar, username, status, level, projects, and badges.
-*   **User Inventory View:** Showcases a collection of trading cards, game items, and other virtual goods.
-*   **Community Content View:** A space for users to share and discover community-created content like artwork and screenshots.
-*   **Community Market View:** A marketplace for users to buy and sell in-game items and other virtual goods.
-*   **Web Components:**
-    *   `<user-badge>`: A component for displaying user badges.
-    *   `<user-project>`: A component for showcasing user projects.
-    *   `<user-review>`: A component for displaying user reviews.
-    *   `<inventory-item>`: A component for displaying items in the user's inventory.
-    *   `<community-item>`: A component for displaying community-created content.
-    *   `<market-item>`: A component for displaying items for sale in the community market.
+## **Style, Design, and Features**
 
-## Current Plan
+### **Visual Design**
 
-This is the initial version of the application. The current plan is to continue to expand upon the existing features and add new functionality as requested.
+*   **Layout:** A single-page layout with clear sections for easy navigation.
+*   **Color Palette:** A modern and clean color scheme.
+*   **Typography:** Clear and readable fonts.
+*   **Iconography:** Use of SVG icons for social media links.
+*   **Components:**
+    *   **Navigation Bar:** A simple and intuitive navigation bar.
+    *   **Profile Header:** A prominent header with a profile picture and status.
+    *   **Carousel:** A dynamic carousel to showcase solutions.
+    *   **Contact Form:** A user-friendly form with clear labels and inputs.
+    *   **Footer:** A custom footer component.
+
+### **Features**
+
+*   **Web Components:** The site uses a custom web component for the footer (`<app-footer>`).
+*   **ES Modules:** JavaScript is organized into modules for better code structure.
+*   **reCAPTCHA Enterprise Integration:** The contact form is protected by reCAPTCHA Enterprise to prevent spam.
+*   **Firestore Integration:** Form submissions are intended to be stored in a Firestore database.
+*   **Secure by Default:** Firestore rules are in place to deny all access by default, with a specific rule to allow creating submissions.
+*   **Environment-Specific Configuration:** Sensitive keys and configuration are managed in `env.js` (frontend) and `.env` (backend) files, which are excluded from version control.
+
+## **Current Plan**
+
+The current focus is on finalizing the implementation of the reCAPTCHA-protected contact form and ensuring the secure deployment of the application.
+
+### **Steps**
+
+1.  **Resolve Deployment Issues:** Address any authentication or configuration errors preventing successful deployment to Firebase Hosting.
+2.  **Verify reCAPTCHA and Firestore Integration:** Once deployed, thoroughly test the contact form to ensure reCAPTCHA is working correctly and that form submissions are being successfully and securely saved to the Firestore database.
+3.  **Refine and Polish:** Review the overall design and user experience, making any necessary adjustments to the styling, layout, or functionality.
