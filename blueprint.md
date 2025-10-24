@@ -1,37 +1,49 @@
 
-# Project Blueprint
+# Blueprint for JerryJigga's Portfolio
 
-## Overview
+This document outlines the design, features, and implementation of a personal portfolio website for JerryJigga. The site is a modern, single-page application built with HTML, CSS, and JavaScript, and deployed on Firebase Hosting.
 
-This project is a multi-page web application featuring a user profile, a community market, and a user inventory. The application is built with HTML, CSS, and JavaScript, and it utilizes web components for a modular architecture.
+## **Purpose and Capabilities**
 
-## Implemented Features
+The primary goal of this project is to create a professional and visually appealing online portfolio to showcase JerryJigga's skills and projects. The site will feature:
 
-### Styling and Design
+*   **A personal introduction:** A brief bio and profile picture.
+*   **A "Solutions" section:** A carousel to display projects or key skills.
+*   **A contact form:** A secure way for visitors to get in touch.
+*   **Social media links:** Easy access to JerryJigga's online presence.
+*   **Modern and responsive design:** A visually appealing and mobile-friendly layout.
+*   **Security:** Protection against spam and abuse using reCAPTCHA Enterprise.
 
-*   **Core CSS:** A central `style.css` file provides global styles.
-*   **Component Styles:** Each view (`UserProfileView`, `CommunityMarketView`, `UserInventoryView`, etc.) has its own dedicated CSS file for component-specific styles.
-*   **Favicon:** A `favico.ico` file is included to be displayed in the browser tab.
+## **Style, Design, and Features**
 
-### Features
+### **Visual Design**
 
-*   **User Profile View:** Displays user information, including a profile picture, badges, projects, and reviews.
-*   **Community Market View:** A view to showcase community items.
-*   **User Inventory View:** A view to display a user's inventory.
-*   **Reusable Footer:** A footer component with a copyright notice is included on all pages.
+*   **Layout:** A single-page layout with clear sections for easy navigation.
+*   **Color Palette:** A modern and clean color scheme.
+*   **Typography:** Clear and readable fonts.
+*   **Iconography:** Use of SVG icons for social media links.
+*   **Components:**
+    *   **Navigation Bar:** A simple and intuitive navigation bar.
+    *   **Profile Header:** A prominent header with a profile picture and status.
+    *   **Carousel:** A dynamic carousel to showcase solutions.
+    *   **Contact Form:** A user-friendly form with clear labels and inputs.
+    *   **Footer:** A custom footer component.
 
-## Current Plan
+### **Features**
 
-### Goal: Redesign the "UserProfileView" to better showcase skills and provide a contact form.
+*   **Web Components:** The site uses a custom web component for the footer (`<app-footer>`).
+*   **ES Modules:** JavaScript is organized into modules for better code structure.
+*   **reCAPTCHA Enterprise Integration:** The contact form is protected by reCAPTCHA Enterprise to prevent spam.
+*   **Firestore Integration:** Form submissions are intended to be stored in a Firestore database.
+*   **Secure by Default:** Firestore rules are in place to deny all access by default, with a specific rule to allow creating submissions.
+*   **Environment-Specific Configuration:** Sensitive keys and configuration are managed in `env.js` (frontend) and `.env` (backend) files, which are excluded from version control.
 
-### Steps:
+## **Current Plan**
 
-1.  **"Badges" to "Solutions" Section:**
-    *   Rename the "Badges" section to "Solutions".
-    *   Replace the current badge display with a dynamic carousel to showcase skills using the newly uploaded SVG icons.
-    *   Implement a hover effect on each SVG to display a skill level visualization.
+The current focus is on finalizing the implementation of the reCAPTCHA-protected contact form and ensuring the secure deployment of the application.
 
-2.  **"Projects" to "Contact Us" Section:**
-    *   Replace the "Latest And Ongoing Projects" section with a "Contact Us" form.
-    *   The form will include fields for name, email, and a message.
-    *   Implement functionality to store the submitted messages.
+### **Steps**
+
+1.  **Resolve Deployment Issues:** Address any authentication or configuration errors preventing successful deployment to Firebase Hosting.
+2.  **Verify reCAPTCHA and Firestore Integration:** Once deployed, thoroughly test the contact form to ensure reCAPTCHA is working correctly and that form submissions are being successfully and securely saved to the Firestore database.
+3.  **Refine and Polish:** Review the overall design and user experience, making any necessary adjustments to the styling, layout, or functionality.

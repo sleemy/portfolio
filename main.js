@@ -2,16 +2,17 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { initializeAppCheck, ReCaptchaV3Provider, getToken } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-check.js";
+import { firebaseConfigLocal} from "./env.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyD9t9GQz5I52Iy9BRv7mtD1CoAbpvkGmLk",
-    authDomain: "mlb-aeb97.firebaseapp.com",
-    projectId: "mlb-aeb97",
-    storageBucket: "mlb-aeb97.firebasestorage.app",
-    messagingSenderId: "359891638261",
-    appId: "1:359891638261:web:20b14b6ca3c2cce89232bc",
-    measurementId: "G-D5Q5YKERLE"
+    apiKey: firebaseConfigLocal.apiKey,
+    authDomain: firebaseConfigLocal.authDomain,
+    projectId: firebaseConfigLocal.projectId,
+    storageBucket: firebaseConfigLocal.storageBucket,
+    messagingSenderId: firebaseConfigLocal.messagingSenderId,
+    appId: firebaseConfigLocal.appId,
+    measurementId: firebaseConfigLocal.measurementId
 };
 
 // Initialize Firebase
@@ -217,3 +218,7 @@ contactForm.addEventListener('submit', async (e) => {
         submitButton.textContent = 'Send Message';
     }
 });
+
+function onSubmit(token) {
+    document.getElementById("contact-form").submit();
+  }

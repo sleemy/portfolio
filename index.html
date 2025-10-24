@@ -2,12 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ 
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lel0HcUAAAAAH-yKh4Nu3PADx0SVpelcXHX12FO"></script>
+       
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JerryJigga's</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="solutions.css">
     <link rel="icon" href="favico.ico">
+    
 </head>
 <body>
     <nav class="main-nav">
@@ -62,6 +66,12 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
+                    <button class="g-recaptcha"
+    data-sitekey="6Lel0HcUAAAAAH-yKh4Nu3PADx0SVpelcXHX12FO"
+    data-callback='onSubmit'
+    data-action='submit'>
+  Submit
+</button>
                     <button type="submit">Send Message</button>
                 </form>
             </section>
@@ -70,6 +80,7 @@
 
     <app-footer></app-footer>
 
+    <script src="env.js"></script>
     <script src="main.js" type="module"></script>
     <script src="footer.js" type="module"></script>
 </body>
