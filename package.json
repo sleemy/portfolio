@@ -1,0 +1,20 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "0 verbose cli C:\\nvm4w\\nodejs\\node.exe C:\\nvm4w\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+  "homepage": "https://github.com/sleemy/portfolio#readme",
+  "bugs": {
+    "url": "https://github.com/sleemy/portfolio/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sleemy/portfolio.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
