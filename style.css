@@ -180,7 +180,6 @@ p {
 
 .profile-stats-container {
     width: 100%;
-    margin-top: 10px;
 }
 .profile-stats{
     gap:10px;
@@ -199,12 +198,27 @@ p {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     flex-shrink: 0;
+    position: relative;
 }
-
+.profile-stats > div > img {
+    transition: transform 0.5s ease-in-out; /* Smooth transition over 0.5 seconds with an ease-in-out curve */
+    transform: rotate(0deg);
+    width: 32px;
+}
+.prfoile-stat >div > p{
+    display: none;
+    position: absolute;
+}
 .profile-stats > div:hover {
-    cursor: grab;
+    cursor: pointer;
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.profile-stats > div:hover >img{
+   transform:  rotate(360) ease-in-out;
+}
+.profile-stats > div:hover >p{
+   display: block;
 }
 
 .stat-value {
