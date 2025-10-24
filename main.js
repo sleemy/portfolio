@@ -1,119 +1,21 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
-import { initializeAppCheck, ReCaptchaV3Provider, getToken } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-check.js";
-import { firebaseConfigLocal} from "./env.js";
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: firebaseConfigLocal.apiKey,
-    authDomain: firebaseConfigLocal.authDomain,
-    projectId: firebaseConfigLocal.projectId,
-    storageBucket: firebaseConfigLocal.storageBucket,
-    messagingSenderId: firebaseConfigLocal.messagingSenderId,
-    appId: firebaseConfigLocal.appId,
-    measurementId: firebaseConfigLocal.measurementId
-};
+import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-check.js";
 
 // Initialize Firebase
+// The 'firebaseConfig' object is loaded from env.js and is available globally.
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Initialize Firebase App Check.
-// By not providing a key, we allow Firebase to manage it automatically.
+// Initialize App Check
+// The 'RECAPTCHA_SITE_KEY' constant is also loaded from env.js.
 const appCheck = initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider(),
+  provider: new ReCaptchaV3Provider(RECAPTCHA_SITE_KEY),
   isTokenAutoRefreshEnabled: true
 });
 
 
-class SkillCard extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-    }
-
-    connectedCallback() {
-        const iconUrl = this.getAttribute('icon-url');
-        const skillName = this.getAttribute('name');
-        const skillLevel = this.getAttribute('level');
-
-        if (!iconUrl) return;
-
-        const wrapper = document.createElement('div');
-        wrapper.classList.add('skill-card');
-
-        const icon = document.createElement('img');
-        icon.src = iconUrl;
-        icon.alt = skillName;
-        icon.width = 64;
-        icon.height = 64;
-
-        const skillLevelBar = document.createElement('div');
-        skillLevelBar.classList.add('skill-level-bar');
-
-        const skillLevelFill = document.createElement('div');
-        skillLevelFill.classList.add('skill-level-fill');
-        skillLevelFill.style.width = `${skillLevel}%`;
-
-        skillLevelBar.appendChild(skillLevelFill);
-
-        const name = document.createElement('p');
-        name.textContent = skillName;
-
-        const style = document.createElement('style');
-        style.textContent = `
-            .skill-card {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-                padding: 15px;
-                background-color: var(--card-color);
-                border-radius: 8px;
-                box-shadow: 0 4px 8px var(--shadow-color);
-                position: relative;
-            }
-            .skill-level-bar {
-                width: 80%;
-                height: 10px;
-                background-color: #1b2838;
-                border-radius: 5px;
-                overflow: hidden;
-                opacity: 0;
-                transition: opacity 0.3s ease-in-out;
-            }
-            .skill-card:hover .skill-level-bar {
-                opacity: 1;
-            }
-            .skill-card img {
-                transform: rotate(0deg); 
-                transition: transform 1s ease-in-out; 
-
-            }
-                 .skill-card:hover img {
-                transform: rotate(360deg);
-            }
-            .skill-level-fill {
-                height: 100%;
-                background-color: var(--accent-color);
-                border-radius: 5px;
-            }
-        `;
-
-        const shadow = this.shadowRoot;
-        shadow.innerHTML = '';
-
-        shadow.appendChild(style);
-        wrapper.appendChild(icon);
-        wrapper.appendChild(name);
-        wrapper.appendChild(skillLevelBar);
-        shadow.appendChild(wrapper);
-    }
-}
-
-customElements.define('skill-card', SkillCard);
-
+// --- Carousel Logic ---
 const solutions = [
     { name: 'HTML', iconUrl: 'assets/html.svg', level: 95 },
     { name: 'CSS', iconUrl: 'assets/css.svg', level: 90 },
@@ -130,95 +32,57 @@ const solutions = [
     { name: 'SQL', iconUrl: 'assets/sql.svg', level: 89 },
     { name: 'Node.js', iconUrl: 'assets/nodejs.svg', level: 91 },
     { name: 'React', iconUrl: 'assets/react.svg', level: 87 },
-    { name: 'Vue', iconUrl: 'assets/vue.svg', level: 84 },
-    { name: 'Angular', iconUrl: 'assets/angular.svg', level: 81 },
-    { name: 'Svelte', iconUrl: 'assets/svelte.svg', level: 77 },
 ];
 
-const profileStatsContainer = document.querySelector('.profile-stats');
-
-const topSkills = [...solutions]
-    .sort((a, b) => b.level - a.level)
-    .slice(0, 10);
-
-const allTopSkills = [...topSkills, ...topSkills];
-
-profileStatsContainer.innerHTML = '';
-
-allTopSkills.forEach(skill => {
-    const statElement = document.createElement('div');
-    const statValue = document.createElement('div');
-    statValue.classList.add('stat-value');
-    statValue.textContent = skill.level;
-
-    const statLabel = document.createElement('div');
-    statLabel.classList.add('stat-label');
-    statLabel.textContent = skill.name;
-
-    statElement.appendChild(statValue);
-    statElement.appendChild(statLabel);
-    profileStatsContainer.appendChild(statElement);
-});
-
 const carouselTrack = document.querySelector('.carousel-track');
-const allSolutions = [...solutions, ...solutions]; 
 
-allSolutions.forEach(solution => {
-    const skillCard = document.createElement('skill-card');
-    skillCard.setAttribute('name', solution.name);
-    skillCard.setAttribute('icon-url', solution.iconUrl);
-    skillCard.setAttribute('level', solution.level);
-    carouselTrack.appendChild(skillCard);
+function createSolutionItem(solution) {
+    const item = document.createElement('div');
+    item.classList.add('carousel-item');
+
+    const content = `
+        <img src="${solution.iconUrl}" alt="${solution.name}" class="solution-icon">
+        <p class="solution-name">${solution.name}</p>
+        <div class="progress-bar-container">
+            <div class="progress-bar" style="width: ${solution.level}%;"></div>
+        </div>
+    `;
+
+    item.innerHTML = content;
+    return item;
+}
+
+solutions.forEach(solution => {
+    const item = createSolutionItem(solution);
+    carouselTrack.appendChild(item);
 });
 
+// --- Contact Form Logic ---
 const contactForm = document.getElementById('contact-form');
-const submitButton = contactForm.querySelector('button[type="submit"]');
-
-// Disable the button initially until App Check is ready.
-submitButton.disabled = true;
-submitButton.textContent = 'Verifying...';
-
-// Wait for the initial App Check token.
-getToken(appCheck, /* forceRefresh= */ false).then(() => {
-    console.log("App Check token ready.");
-    submitButton.disabled = false;
-    submitButton.textContent = 'Send Message';
-}).catch(error => {
-    console.error("App Check failed to initialize:", error);
-    submitButton.textContent = 'Verification Failed';
-    // Optionally, keep the button disabled or show a more descriptive error.
-});
-
 
 contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    const name = contactForm.name.value;
+    const email = contactForm.email.value;
+    const message = contactForm.message.value;
 
     try {
-        await addDoc(collection(db, "messages"), {
+        // Here you would get the App Check token
+        // const appCheckTokenResponse = await getToken(appCheck);
+        // const appCheckToken = appCheckTokenResponse.token;
+
+        const docRef = await addDoc(collection(db, "submissions"), {
             name: name,
             email: email,
             message: message,
-            timestamp: new Date()
+            createdAt: new Date()
         });
-        
+        console.log("Document written with ID: ", docRef.id);
+        alert("Message sent successfully!");
         contactForm.reset();
-        alert('Thank you for your message! I will get back to you soon.');
-
     } catch (error) {
         console.error("Error adding document: ", error);
-        alert('There was an error sending your message. Please check the console for details.');
-    } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Send Message';
+        alert("Error sending message. Please try again.");
     }
 });
-
-function onSubmit(token) {
-    document.getElementById("contact-form").submit();
-  }
