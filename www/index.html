@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=``${RECAPTCHA_SITE_KEY}`"></script>   
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lel0HcUAAAAAH-yKh4Nu3PADx0SVpelcXHX12FO"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JerryJigga's</title>
@@ -12,6 +12,81 @@
     
 </head>
 <body>
-    `${content}`
+    <nav class="main-nav">
+        <a href="https://github.com/sleemy">
+            <img src="assets/github.svg" alt="github" width="30" height="30">
+        </a>
+        <a href="https://x.com/Grandioza_uno">
+            <img src="assets/x.svg" alt="x" width="30" height="30">
+        </a>
+        <a href="#">
+            <img src="assets/linkedin.svg" alt="linkedin" width="30" height="30">
+        </a>
+        <a href="https://www.tiktok.com/@2simple4you">
+            <img src="assets/tt.svg" alt="tiktok" width="30" height="30">
+        </a>
+    </nav>
+
+    <div class="profile-container">
+        <header class="profile-header">
+            <img src="assets/img/JerryPro.png" alt="User Avatar" class="avatar">
+            <div class="profile-info">
+                <h1 class="username">JerryJigga</h1>
+                <p class="status"><b><i>Deployement+AI</i></b></p>
+                <div class="carousel-container carousel-container-header profile-stats-container">
+                    <div class="carousel-track profile-stats">
+                        </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section id="solutions">
+                <h2>Projects</h2>
+                <!-- <div class="carousel-container">
+                    <div class="carousel-track">
+                        </div>
+                </div> -->
+            </section>
+
+              <section id="Map">
+                <h2>We are here</h2>
+                <!-- <div class="carousel-container">
+                    <div class="carousel-track">
+                        </div>
+                </div> -->
+            </section>
+
+            <section id="contact">
+                <h2>Contact</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button class="g-recaptcha"
+    data-sitekey= "6Lel0HcUAAAAAH-yKh4Nu3PADx0SVpelcXHX12FO"
+    data-callback='onSubmit'
+    data-action='submit'>
+  Submit
+</button>
+                    <button type="submit">Send Message</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <app-footer></app-footer>
+    <script src="config.js"></script>
+    <script src="main.js" type="module"></script>
+    <script src="footer.js" type="module"></script>
 </body>
 </html>
