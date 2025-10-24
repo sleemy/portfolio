@@ -1,49 +1,51 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
-import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-check.js";
+// TODO separate google init code to separate file to maintain clean code this js does animations server logics
 
-// Initialize Firebase
-// The 'firebaseConfig' object is loaded from env.js and is available globally.
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+// import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+// import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-check.js";
 
-// Initialize App Check
-// The 'RECAPTCHA_SITE_KEY' constant is also loaded from env.js.
-// Basic appcheck if user is real TODO add more complex appcheck and frontend validations
-const appCheck = initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider(RECAPTCHA_SITE_KEY),
-  isTokenAutoRefreshEnabled: true
-});
+// // Initialize Firebase
+// // The 'firebaseConfig' object is loaded from env.js and is available globally.
+// const app = initializeApp(firebaseConfig);
+// const db = getFirestore(app);
 
-// --- Contact Form Logic ---
-const contactForm = document.getElementById('contact-form');
+// // Initialize App Check
+// // The 'RECAPTCHA_SITE_KEY' constant is also loaded from env.js.
+// // Basic appcheck if user is real TODO add more complex appcheck and frontend validations
+// const appCheck = initializeAppCheck(app, {
+//   provider: new ReCaptchaV3Provider(RECAPTCHA_SITE_KEY),
+//   isTokenAutoRefreshEnabled: true
+// });
 
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+// // --- Contact Form Logic ---
+// const contactForm = document.getElementById('contact-form');
 
-    const name = contactForm.name.value;
-    const email = contactForm.email.value;
-    const message = contactForm.message.value;
+// contactForm.addEventListener('submit', async (e) => {
+//     e.preventDefault();
 
-    try {
-        // Here you would get the App Check token
-        // const appCheckTokenResponse = await getToken(appCheck);
-        // const appCheckToken = appCheckTokenResponse.token;
+//     const name = contactForm.name.value;
+//     const email = contactForm.email.value;
+//     const message = contactForm.message.value;
 
-        const docRef = await addDoc(collection(db, "submissions"), {
-            name: name,
-            email: email,
-            message: message,
-            createdAt: new Date()
-        });
-        console.log("Document written with ID: ", docRef.id);
-        alert("Message sent successfully!");
-        contactForm.reset();
-    } catch (error) {
-        console.error("Error adding document: ", error);
-        alert("Error sending message. Please try again.");
-    }
-});
+//     try {
+//         // Here you would get the App Check token
+//         // const appCheckTokenResponse = await getToken(appCheck);
+//         // const appCheckToken = appCheckTokenResponse.token;
+
+//         const docRef = await addDoc(collection(db, "submissions"), {
+//             name: name,
+//             email: email,
+//             message: message,
+//             createdAt: new Date()
+//         });
+//         console.log("Document written with ID: ", docRef.id);
+//         alert("Message sent successfully!");
+//         contactForm.reset();
+//     } catch (error) {
+//         console.error("Error adding document: ", error);
+//         alert("Error sending message. Please try again.");
+//     }
+// });
 
 // --- Carousel Logic ---
 const solutions = [
